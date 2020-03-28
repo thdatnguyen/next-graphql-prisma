@@ -60,7 +60,7 @@ const Header = () => (
     <div className="bar">
       <Logo>
         <Link href="/">
-          <a>Sick Fits</a>
+          <a>Tada Ecommerce</a>
         </Link>
       </Logo>
       <Nav />

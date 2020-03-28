@@ -53,3 +53,4 @@ const ItemList = styled.div`
 `;
 
 export default Items;
+export { ALL_ITEMS_QUERY };

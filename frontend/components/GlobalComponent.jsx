@@ -26,14 +26,31 @@ const GridContainer = styled.div`
 
 const GlobalStyled = createGlobalStyle`
   @font-face {
-    font-family: 'radnika_next';
-    src: url('/radnikanext-medium-webfont.woff2') format('woff2');
-    font-weight: normal;
+    font-family: 'FiraSans';
+    src: url('FiraSans-Regular.eot'); /* IE9 Compat Modes */
+    src: url('FiraSans-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('FiraSans-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('FiraSans-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+        url('FiraSans-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('FiraSans-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+    font-weight: 400;
     font-style: normal;
   }
+  @font-face {
+    font-family: 'FiraSans';
+    src: url('FiraSans-Bold.eot'); /* IE9 Compat Modes */
+    src: url('FiraSans-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('FiraSans-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+        url('FiraSans-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+        url('FiraSans-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('FiraSans-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+    font-weight: 600;
+    font-style: normal;
+  }
+
   html {
     box-sizing: border-box;
-    font-size: 10px;
+    font-size: 12px;
   }
   *, *:before, *:after {
     box-sizing: inherit;
@@ -43,13 +60,13 @@ const GlobalStyled = createGlobalStyle`
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
-    font-family: 'radnika_next';
+    font-family: 'FiraSans', sans-serif;
   }
   a {
     text-decoration: none;
     color: ${theme.black};
   }
-  button {  font-family: 'radnika_next'; }
+  button {  font-family: 'FiraSans', sans-serif; font-weight: 600; }
 `;
 
 class GlobalComponent extends Component {

@@ -1,23 +1,39 @@
 import React from "react";
 import Link from "next/link";
 import NavStyles from "./styles/NavStyles";
-const Nav = () => {
-  return (
-    <NavStyles>
-      <Link href="/shop">
-        <a>Shop</a>
-      </Link>
-      <Link href="/sell">
-        <a>Sell</a>
-      </Link>
-      <Link href="/orders">
-        <a>Orders</a>
-      </Link>
-      <Link href="/me">
-        <a>Account</a>
-      </Link>
-    </NavStyles>
-  );
-};
-
+import User from "./User";
+import Signout from "./Signout";
+const Nav = () => (
+  <User>
+    {({ data }) => {
+      const me = data ? data.me : null;
+      return (
+        <NavStyles>
+          <Link href="/shop">
+            <a>Shop</a>
+          </Link>
+          {me && (
+            <>
+              <Link href="/sell">
+                <a>Sell</a>
+              </Link>
+              <Link href="/orders">
+                <a>Orders</a>
+              </Link>
+              <Link href="/me">
+                <a>Account</a>
+              </Link>
+              <Signout />
+            </>
+          )}
+          {!me && (
+            <Link href="/signup">
+              <a>Sign In</a>
+            </Link>
+          )}
+        </NavStyles>
+      );
+    }}
+  </User>
+);
 export default Nav;

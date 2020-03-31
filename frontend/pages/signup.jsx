@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Signup from "../components/Signup";
+import Signin from "../components/Signin";
 import styled from "styled-components";
 
 const SignupWrappper = styled.div`
@@ -13,8 +14,7 @@ class signpupPage extends Component {
     return (
       <SignupWrappper>
         <Signup />
-        {/* <Signup />
-        <Signup /> */}
+        <Signin />
       </SignupWrappper>
     );
   }

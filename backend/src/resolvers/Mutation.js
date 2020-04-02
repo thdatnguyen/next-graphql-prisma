@@ -2,12 +2,21 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { randomBytes } = require("crypto");
 const { promisify } = require("util");
-
+const { transport, makeANiceEmail } = require("../mail");
 const Mutations = {
   async createItem(_parent, args, ctx, info) {
+    if (!ctx.request.userId)
+      throw new Error("You must be logged in to create new item");
+
     return await ctx.db.mutation.createItem(
       {
         data: {
+          // how to create relationshop between item and user
+          user: {
+            connect: {
+              id: ctx.request.userId
+            }
+          },
           ...args
         }
       },
@@ -91,6 +100,7 @@ const Mutations = {
   async requestReset(parent, args, ctx, info) {
     // Check if this is a real user
     const user = await ctx.db.query.user({ where: { email: args.email } });
+
     if (!user)
       throw new Error(`No such user founded for given email ${args.email}`);
 
@@ -108,9 +118,19 @@ const Mutations = {
       }
     });
     //  test only
-    // console.log(res);
-    return { message: "Thanks!" };
+    console.log(res);
     // Email them that reset token
+    const mailRes = await transport.sendMail({
+      from: "thdat.nguyen@gmail.com",
+      to: user.email,
+      subject: "Your Password Reset Token",
+      html: makeANiceEmail(
+        user.name,
+        `Your Password Reset Token is here: <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}" alt="reset password token">Click here to reset!</a>`
+      )
+    });
+    // return success message
+    return { message: "Thanks!" };
   },
   async resetPassword(_parent, args, ctx, _info) {
     const { password, confirmPassword, resetToken } = args;

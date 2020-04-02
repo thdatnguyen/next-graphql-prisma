@@ -12,15 +12,17 @@ const PaginationStyles = styled.div`
   border-radius: 10px;
   & > * {
     margin: 0;
-    padding: 15px 30px;
+    padding: 10px 20px;
     border-right: 1px solid ${props => props.theme.lightgrey};
     &:last-child {
       border-right: 0;
     }
   }
   a[aria-disabled="true"] {
+    /* font-weight: 400;
     color: grey;
-    pointer-events: none;
+    pointer-events: none; */
+    display: none;
   }
 `;
 

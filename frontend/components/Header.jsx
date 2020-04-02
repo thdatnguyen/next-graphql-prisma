@@ -23,6 +23,7 @@ const Logo = styled.h1`
   position: relative;
   z-index: 2;
   transform: skew(-7deg);
+
   a {
     padding: 0.5rem 1rem;
     background: ${props => props.theme.red};
@@ -37,6 +38,11 @@ const Logo = styled.h1`
 `;
 
 const StyledHeader = styled.header`
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+  background-color: ${props => props.theme.white};
   .bar {
     border-bottom: 10px solid ${props => props.theme.black};
     display: grid;

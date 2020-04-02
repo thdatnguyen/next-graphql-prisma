@@ -4,20 +4,17 @@ import gql from "graphql-tag";
 import Form from "./styles/Form";
 import ErrorMessage from "./ErrorMessage";
 import { CURRENT_USER_QUERY } from "./User";
-const SIGNIN_MUTATION = gql`
-  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
-    signin(email: $email, password: $password) {
-      id
-      email
-      name
+const REQUEST_RESET_MUTATION = gql`
+  mutation REQUEST_RESET_MUTATION($email: String!) {
+    requestReset(email: $email) {
+      message
     }
   }
 `;
 
 class Signin extends Component {
   state = {
-    email: "",
-    password: ""
+    email: ""
   };
   saveToState = e => {
     const { name, value } = e.target;
@@ -25,27 +22,28 @@ class Signin extends Component {
   };
   render() {
     return (
-      <Mutation
-        mutation={SIGNIN_MUTATION}
-        variables={this.state}
-        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-      >
-        {(signin, { error, loading }) => (
+      <Mutation mutation={REQUEST_RESET_MUTATION} variables={this.state}>
+        {(reset, { error, loading, called }) => (
           <Form
             method="post"
             onSubmit={async e => {
               e.preventDefault();
-              const res = await signin();
-              console.log(res);
+              await reset();
               this.setState({
-                name: "",
                 email: ""
               });
             }}
           >
             <fieldset disabled={loading} aria-busy={loading}>
-              <h2>Sign in !!!</h2>
+              <h2>Forget Password !!!</h2>
               <ErrorMessage error={error} />
+              {!error && !loading && called && (
+                <p>
+                  Success !!!
+                  <br />
+                  Please check your email for your reset link.
+                </p>
+              )}
               <label htmlFor="email">
                 Email
                 <input
@@ -56,17 +54,7 @@ class Signin extends Component {
                   onChange={this.saveToState}
                 />
               </label>
-              <label htmlFor="password">
-                Password
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChange={this.saveToState}
-                />
-              </label>
-              <button type="submit">Sign In!</button>
+              <button type="submit">Request reset password!</button>
             </fieldset>
           </Form>
         )}

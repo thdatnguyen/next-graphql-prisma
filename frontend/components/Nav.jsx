@@ -9,27 +9,39 @@ const Nav = () => (
       const me = data ? data.me : null;
       return (
         <NavStyles>
-          <Link href="/shop">
-            <a>Shop</a>
-          </Link>
+          <li>
+            <Link href="/shop">
+              <a>Shop</a>
+            </Link>
+          </li>
           {me && (
             <>
-              <Link href="/sell">
-                <a>Sell</a>
-              </Link>
-              <Link href="/orders">
-                <a>Orders</a>
-              </Link>
-              <Link href="/me">
-                <a>Account</a>
-              </Link>
-              <Signout />
+              <li>
+                <Link href="/sell">
+                  <a>Sell</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/orders">
+                  <a>Orders</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/me">
+                  <a>Account</a>
+                </Link>
+              </li>
+              <li>
+                <Signout />
+              </li>
             </>
           )}
           {!me && (
-            <Link href="/signup">
-              <a>Sign In</a>
-            </Link>
+            <li>
+              <Link href="/signup">
+                <a>Sign In</a>
+              </Link>
+            </li>
           )}
         </NavStyles>
       );

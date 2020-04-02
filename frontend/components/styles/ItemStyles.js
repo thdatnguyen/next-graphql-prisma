@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Item = styled.div`
   background: white;
@@ -31,6 +31,12 @@ const Item = styled.div`
       border: 0;
       font-size: 1rem;
       padding: 1rem;
+      color: ${props => props.theme.black};
+      font-weight: 600;
+      transition: color 0.4s ease-in-out;
+      &:hover {
+        color: ${props => props.theme.red};
+      }
     }
   }
 `;

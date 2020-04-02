@@ -58,8 +58,8 @@ const Center = styled.div`
 
 const ItemList = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 60px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
 `;

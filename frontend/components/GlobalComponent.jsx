@@ -7,14 +7,15 @@ const theme = {
   red: "#FF0000",
   black: "#393939",
   grey: "#3A3A3A",
+  white: "#FFFFFF",
   lightgrey: "#E1E1E1",
   offWhite: "#EDEDED",
-  maxWidth: "1000px",
+  maxWidth: "1160px",
   bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
 };
 
 const StyleComp = styled.div`
-  background: white;
+  background: ${props => props.theme.white};
   color: ${props => props.theme.black};
 `;
 
@@ -56,7 +57,7 @@ const GlobalStyled = createGlobalStyle`
     box-sizing: inherit;
   }
   body {
-    padding: 0;
+    padding: 244px 0 0;
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
@@ -66,7 +67,18 @@ const GlobalStyled = createGlobalStyle`
     text-decoration: none;
     color: ${theme.black};
   }
-  button {  font-family: 'FiraSans', sans-serif; font-weight: 600; }
+  button {
+    border: 1px solid ${props => props.theme.red};
+    font-family: 'FiraSans', sans-serif;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      /* border: 1px solid ${props => props.theme.red}; */
+      background-color: ${props => props.theme.white};
+      color: ${props => props.theme.red};
+    }
+  }
 `;
 
 class GlobalComponent extends Component {

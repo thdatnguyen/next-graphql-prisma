@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Signup from "../components/Signup";
 import Signin from "../components/Signin";
+import RequestReset from "../components/RequestReset";
 import styled from "styled-components";
 
 const SignupWrappper = styled.div`
@@ -15,6 +16,7 @@ class signpupPage extends Component {
       <SignupWrappper>
         <Signup />
         <Signin />
+        <RequestReset />
       </SignupWrappper>
     );
   }

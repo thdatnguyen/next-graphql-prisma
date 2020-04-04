@@ -1,4 +1,4 @@
-enum Role {
+enum Permission {
   ADMIN
   USER
   ITEMCREATE
@@ -14,7 +14,9 @@ type User {
   password: String!
   resetToken: String
   resetTokenExpiry: String
-  role: Role @default(value: USER)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  permissions: [Permission] @scalarList(strategy:RELATION)
 }
 
 type Item {

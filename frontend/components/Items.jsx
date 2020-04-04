@@ -28,7 +28,7 @@ class Items extends Component {
           query={ALL_ITEMS_QUERY}
           variables={{
             skip: this.props.page * perPage - perPage,
-            first: perPage
+            first: perPage,
           }}
         >
           {({ data, error, loading }) => {
@@ -37,7 +37,7 @@ class Items extends Component {
             return (
               <div>
                 <ItemList>
-                  {data.items.map(item => (
+                  {data.items.map((item) => (
                     <Item key={item.id} item={item} />
                   ))}
                 </ItemList>
@@ -60,7 +60,7 @@ const ItemList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;
-  max-width: ${props => props.theme.maxWidth};
+  max-width: ${(props) => props.theme.maxWidth};
   margin: 0 auto;
 `;
 

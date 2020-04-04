@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const { randomBytes } = require("crypto");
 const { promisify } = require("util");
 const { transport, makeANiceEmail } = require("../mail");
+const { hasPermission } = require("../utils");
 const Mutations = {
   async createItem(_parent, args, ctx, info) {
     if (!ctx.request.userId)
@@ -14,11 +15,11 @@ const Mutations = {
           // how to create relationshop between item and user
           user: {
             connect: {
-              id: ctx.request.userId
-            }
+              id: ctx.request.userId,
+            },
           },
-          ...args
-        }
+          ...args,
+        },
       },
       info
     );
@@ -33,8 +34,8 @@ const Mutations = {
       {
         data: updates,
         where: {
-          id: args.id
-        }
+          id: args.id,
+        },
       },
       info
     );
@@ -52,13 +53,15 @@ const Mutations = {
   async signup(_parent, args, ctx, info) {
     args.email = args.email.toLowerCase();
     const password = await bcrypt.hash(args.password, 10);
+
     //create user
     const user = await ctx.db.mutation.createUser(
       {
         data: {
           ...args,
-          password
-        }
+          password,
+          permissions: { set: ["USER"] },
+        },
       },
       info
     );
@@ -68,7 +71,7 @@ const Mutations = {
     // set the jwt as the collie on the response
     ctx.response.cookie("token", token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365
+      maxAge: 1000 * 60 * 60 * 24 * 365,
     });
     return user;
   },
@@ -88,7 +91,7 @@ const Mutations = {
     // set the cookie with the token
     ctx.response.cookie("token", token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365
+      maxAge: 1000 * 60 * 60 * 24 * 365,
     });
     // return the user
     return user;
@@ -110,12 +113,12 @@ const Mutations = {
     const resetTokenExpiry = Date.now() + 1000 * 60 * 60;
     const res = await ctx.db.mutation.updateUser({
       where: {
-        email: args.email
+        email: args.email,
       },
       data: {
         resetToken,
-        resetTokenExpiry
-      }
+        resetTokenExpiry,
+      },
     });
     //  test only
     console.log(res);
@@ -127,7 +130,7 @@ const Mutations = {
       html: makeANiceEmail(
         user.name,
         `Your Password Reset Token is here: <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}" alt="reset password token">Click here to reset!</a>`
-      )
+      ),
     });
     // return success message
     return { message: "Thanks!" };
@@ -143,8 +146,8 @@ const Mutations = {
     const [user] = await ctx.db.query.users({
       where: {
         resetToken,
-        resetTokenExpiry_gte: Date.now() - 1000 * 60 * 60
-      }
+        resetTokenExpiry_gte: Date.now() - 1000 * 60 * 60,
+      },
     });
 
     // check if its expired
@@ -158,8 +161,8 @@ const Mutations = {
       data: {
         password: newPassword,
         resetToken: null,
-        resetTokenExpiry: null
-      }
+        resetTokenExpiry: null,
+      },
     });
 
     // Generate JWT
@@ -168,11 +171,41 @@ const Mutations = {
     // Set the JWT cookie
     ctx.response.cookie("token", token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365
+      maxAge: 1000 * 60 * 60 * 24 * 365,
     });
     // Return the new user
     return updatedUser;
-  }
+  },
+  async updatePermissions(_parent, args, ctx, info) {
+    // check if they are logged in
+    if (!ctx.request.userId) throw new Error("You have to log in");
+
+    // query the current user
+    const currentUser = await ctx.db.query.user(
+      {
+        where: {
+          id: ctx.request.userId,
+        },
+      },
+      info
+    );
+    //check if they have permissios to do this
+    hasPermission(currentUser, ["ADMIN", "PERMISSIONUPDATE"]);
+    // update the permissions
+    return ctx.db.mutation.updateUser(
+      {
+        data: {
+          permissions: {
+            set: args.permissions,
+          },
+        },
+        where: {
+          id: args.userId,
+        },
+      },
+      info
+    );
+  },
 };
 
 module.exports = Mutations;

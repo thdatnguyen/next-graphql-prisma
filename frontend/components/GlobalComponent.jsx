@@ -11,16 +11,16 @@ const theme = {
   lightgrey: "#E1E1E1",
   offWhite: "#EDEDED",
   maxWidth: "1160px",
-  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
+  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)",
 };
 
 const StyleComp = styled.div`
-  background: ${props => props.theme.white};
-  color: ${props => props.theme.black};
+  background: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.black};
 `;
 
 const GridContainer = styled.div`
-  max-width: ${props => props.theme.maxWidth};
+  max-width: ${(props) => props.theme.maxWidth};
   margin: 0 auto;
   padding: 2rem;
 `;
@@ -68,15 +68,19 @@ const GlobalStyled = createGlobalStyle`
     color: ${theme.black};
   }
   button {
-    border: 1px solid ${props => props.theme.red};
+    border: 1px solid ${(props) => props.theme.red};
     font-family: 'FiraSans', sans-serif;
     font-weight: 600;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     cursor: pointer;
     &:hover {
-      /* border: 1px solid ${props => props.theme.red}; */
-      background-color: ${props => props.theme.white};
-      color: ${props => props.theme.red};
+      /* border: 1px solid ${(props) => props.theme.red}; */
+      background-color: ${(props) => props.theme.white};
+      color: ${(props) => props.theme.red};
+    }
+    &:disabled,
+    &[disabled] {
+      color: ${(props) => props.theme.lightgrey}!important;
     }
   }
 `;

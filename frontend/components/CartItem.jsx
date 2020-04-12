@@ -4,6 +4,13 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import RemoveFromCart from "./RemoveFromCart";
 const CartItem = ({ cartItem: { id, quantity, item } }) => {
+  if (!item)
+    return (
+      <CartItemStyles>
+        <p>This item has been removed</p>
+        <RemoveFromCart id={id} />
+      </CartItemStyles>
+    );
   return (
     <CartItemStyles>
       <img src={item.image} width="100" alt={item.title} />
@@ -16,7 +23,6 @@ const CartItem = ({ cartItem: { id, quantity, item } }) => {
           </em>
         </p>
       </div>
-      <RemoveFromCart id={id} />
     </CartItemStyles>
   );
 };

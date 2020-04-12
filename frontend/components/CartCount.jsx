@@ -1,6 +1,32 @@
 import React from "react";
 import PropTyles from "prop-types";
 import styled from "styled-components";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+
+const AnimationStyles = styled.span`
+  position: relative;
+  .count {
+    display: block;
+    position: relative;
+    transition: all 0.4s;
+    backface-visibility: hidden;
+  }
+  /* Initial state of the entered dot */
+  .count-enter {
+    transform: scale(2) rotateX(0.5turn);
+  }
+  .count-active {
+    transform: rotateX(0);
+  }
+  .count-exit {
+    top: 0;
+    position: absolute;
+    transform: rotateX(0);
+  }
+  .count-exit-active {
+    transform: scale(2) rotateX(0.5turn);
+  }
+`;
 
 const DotStyles = styled.div`
   background: ${(props) => props.theme.red};
@@ -16,7 +42,21 @@ const DotStyles = styled.div`
 `;
 
 const CartCount = ({ count }) => {
-  return <DotStyles>{count}</DotStyles>;
+  return (
+    <AnimationStyles>
+      <TransitionGroup>
+        <CSSTransition
+          unmountOnExit
+          className="count"
+          classNames="count"
+          key={count}
+          timeout={{ enter: 400, exit: 400 }}
+        >
+          <DotStyles>{count}</DotStyles>
+        </CSSTransition>
+      </TransitionGroup>
+    </AnimationStyles>
+  );
 };
 
 export default CartCount;

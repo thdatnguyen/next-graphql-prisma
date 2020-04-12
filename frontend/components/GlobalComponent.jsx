@@ -51,7 +51,7 @@ const GlobalStyled = createGlobalStyle`
 
   html {
     box-sizing: border-box;
-    font-size: 12px;
+    font-size: 11px;
   }
   *, *:before, *:after {
     box-sizing: inherit;

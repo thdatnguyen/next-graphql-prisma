@@ -26,7 +26,7 @@ const Logo = styled.h1`
 
   a {
     padding: 0.5rem 1rem;
-    background: ${props => props.theme.red};
+    background: ${(props) => props.theme.red};
     color: white;
     text-transform: uppercase;
     text-decoration: none;
@@ -42,9 +42,9 @@ const StyledHeader = styled.header`
   width: 100%;
   top: 0;
   z-index: 1;
-  background-color: ${props => props.theme.white};
+  background-color: ${(props) => props.theme.white};
   .bar {
-    border-bottom: 10px solid ${props => props.theme.black};
+    border-bottom: 10px solid ${(props) => props.theme.black};
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: space-between;
@@ -57,7 +57,7 @@ const StyledHeader = styled.header`
   .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;
-    border-bottom: 1px solid ${props => props.theme.lightgrey};
+    border-bottom: 1px solid ${(props) => props.theme.lightgrey};
   }
 `;
 

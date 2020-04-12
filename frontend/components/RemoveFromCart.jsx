@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -13,7 +13,7 @@ const REMOVE_FROM_CART_MUTATION = gql`
   }
 `;
 
-class RemoveFromCart extends React.Component {
+class RemoveFromCart extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
   };

@@ -90,7 +90,6 @@ class UserPermission extends Component {
     }
 
     this.setState({ permissions: updatedPermissions });
-    console.log(updatedPermissions);
   };
   render() {
     const { user } = this.props;

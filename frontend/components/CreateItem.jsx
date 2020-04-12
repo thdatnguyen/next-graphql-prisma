@@ -33,16 +33,16 @@ class CreateItem extends Component {
     image: "",
     largeImage: "",
     price: 0,
-    altImg: ""
+    altImg: "",
   };
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, type, value } = e.target;
     const val = type === "number" ? parseFloat(value) : value;
     this.setState({
-      [name]: val
+      [name]: val,
     });
   };
-  uploadFile = async e => {
+  uploadFile = async (e) => {
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
@@ -51,16 +51,15 @@ class CreateItem extends Component {
       "https://api.cloudinary.com/v1_1/tadaaaaa/image/upload",
       {
         method: "POST",
-        body: data
+        body: data,
       }
     );
     const file = await res.json();
-    console.log(file);
 
     this.setState({
       image: file.secure_url,
       largeImage: file.eager[0].secure_url,
-      altImg: file.original_file
+      altImg: file.original_file,
     });
   };
   render() {
@@ -68,13 +67,12 @@ class CreateItem extends Component {
       <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
         {(createItem, { loading, error }) => (
           <Form
-            onSubmit={async e => {
+            onSubmit={async (e) => {
               e.preventDefault();
               const res = await createItem();
-              console.log(res);
               Router.push({
                 pathname: "/item",
-                query: { id: res.data.createItem.id }
+                query: { id: res.data.createItem.id },
               });
             }}
           >

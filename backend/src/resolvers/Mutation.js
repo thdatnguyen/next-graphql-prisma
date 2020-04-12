@@ -120,8 +120,6 @@ const Mutations = {
         resetTokenExpiry
       }
     });
-    //  test only
-    console.log(res);
     // Email them that reset token
     const mailRes = await transport.sendMail({
       from: "thdat.nguyen@gmail.com",

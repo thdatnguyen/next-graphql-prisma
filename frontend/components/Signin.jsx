@@ -17,9 +17,9 @@ const SIGNIN_MUTATION = gql`
 class Signin extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
   };
-  saveToState = e => {
+  saveToState = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
@@ -33,13 +33,12 @@ class Signin extends Component {
         {(signin, { error, loading }) => (
           <Form
             method="post"
-            onSubmit={async e => {
+            onSubmit={async (e) => {
               e.preventDefault();
               const res = await signin();
-              console.log(res);
               this.setState({
                 name: "",
-                email: ""
+                email: "",
               });
             }}
           >

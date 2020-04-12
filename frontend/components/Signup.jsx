@@ -22,9 +22,9 @@ class Signup extends Component {
   state = {
     name: "",
     email: "",
-    password: ""
+    password: "",
   };
-  saveToState = e => {
+  saveToState = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
@@ -38,14 +38,13 @@ class Signup extends Component {
         {(signup, { error, loading }) => (
           <Form
             method="post"
-            onSubmit={async e => {
+            onSubmit={async (e) => {
               e.preventDefault();
               const res = await signup();
-              console.log(res);
               this.setState({
                 name: "",
                 email: "",
-                password: ""
+                password: "",
               });
             }}
           >

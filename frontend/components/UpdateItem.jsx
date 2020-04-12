@@ -41,24 +41,23 @@ const UPDATE_ITEM_MUTATION = gql`
 class UpdateItem extends Component {
   state = {};
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, type, value } = e.target;
     const val = type === "number" ? parseFloat(value) : value;
     this.setState({
-      [name]: val
+      [name]: val,
     });
   };
 
   updateItem = async (e, updateItemMutation) => {
     e.preventDefault();
-    console.log("Updating");
-    const res = await updateItemMutation({
+
+    await updateItemMutation({
       variables: {
         id: this.props.id,
-        ...this.state
-      }
+        ...this.state,
+      },
     });
-    console.log("Updated");
   };
 
   render() {
@@ -70,7 +69,7 @@ class UpdateItem extends Component {
             <Mutation mutation={UPDATE_ITEM_MUTATION} variables={this.state}>
               {(updateItem, { loading, error }) => (
                 <Form
-                  onSubmit={e => {
+                  onSubmit={(e) => {
                     this.updateItem(e, updateItem);
                   }}
                 >

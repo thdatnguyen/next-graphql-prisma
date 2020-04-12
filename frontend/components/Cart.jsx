@@ -35,7 +35,7 @@ const Cart = () => (
     {({ user: { data }, toggleCart, localState }) => {
       const me = data ? data.me : null;
       if (!me) return null;
-      console.log(me);
+
       return (
         <CartStyles open={localState.data.cartOpen}>
           <header>

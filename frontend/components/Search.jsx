@@ -51,7 +51,6 @@ class Search extends Component {
       items: res.data.items,
       loading: false,
     });
-    console.log(res);
   }, 350);
   render() {
     resetIdCounter();

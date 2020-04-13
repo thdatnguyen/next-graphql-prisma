@@ -1,1 +1,3 @@
-module.exports = require('stripe')(process.env.STRIPE_SECRET);
+// const strupe = require("stripe");
+// const config = stripe(process.env.STRIPE_SECRET);
+module.exports = require("stripe")(process.env.STRIPE_SECRET);

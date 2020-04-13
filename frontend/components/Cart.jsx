@@ -10,6 +10,7 @@ import SickButton from "./styles/SickButton";
 import CartItem from "./CartItem";
 import calcTotalPrice from "../lib/calcTotalPrice";
 import formatMoney from "../lib/formatMoney";
+import Checkout from "../components/Checkout";
 const TOGGLE_CART_MUTATION = gql`
   mutation {
     toggleCart @client
@@ -57,7 +58,9 @@ const Cart = () => (
           </ul>
           <footer>
             <p>Total: {formatMoney(calcTotalPrice(me.cart))}</p>
-            <SickButton>Checkout</SickButton>
+            <Checkout>
+              <SickButton>Checkout</SickButton>
+            </Checkout>
           </footer>
         </CartStyles>
       );

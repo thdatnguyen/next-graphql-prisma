@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
-import Form from "./styles/Form";
-import formatMoney from "../lib/formatMoney";
-import ErrorMessage from "./ErrorMessage";
 import Router from "next/router";
+
+import ErrorMessage from "./ErrorMessage.component";
+
+import Form from "./styles/Form";
+
+// import formatMoney from "../lib/formatMoney";
 
 const CREATE_ITEM_MUTATION = gql`
   mutation CREATE_ITEM_MUTATION(

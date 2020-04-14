@@ -3,7 +3,8 @@ import { Mutation } from "react-apollo";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import gql from "graphql-tag";
-import { CURRENT_USER_QUERY } from "./User";
+
+import { CURRENT_USER_QUERY } from "./User.component";
 
 const REMOVE_FROM_CART_MUTATION = gql`
   mutation removeFromCart($id: ID!) {

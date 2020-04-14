@@ -2,15 +2,19 @@ import React from "react";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import { adopt } from "react-adopt";
-import User from "./User";
+
+import User from "./User.component";
+import CartItem from "./CartItem.component";
+import Checkout from "./Checkout.component";
+
 import CartStyles from "./styles/CartStyles";
 import Supreme from "./styles/Supreme";
 import CloseButton from "./styles/CloseButton";
 import SickButton from "./styles/SickButton";
-import CartItem from "./CartItem";
+
 import calcTotalPrice from "../lib/calcTotalPrice";
 import formatMoney from "../lib/formatMoney";
-import Checkout from "../components/Checkout";
+
 const TOGGLE_CART_MUTATION = gql`
   mutation {
     toggleCart @client
@@ -58,9 +62,13 @@ const Cart = () => (
           </ul>
           <footer>
             <p>Total: {formatMoney(calcTotalPrice(me.cart))}</p>
-            <Checkout>
-              <SickButton>Checkout</SickButton>
-            </Checkout>
+            {me.cart.length ? (
+              <Checkout>
+                <SickButton>Checkout</SickButton>
+              </Checkout>
+            ) : (
+              <SickButton disabled>Checkout</SickButton>
+            )}
           </footer>
         </CartStyles>
       );

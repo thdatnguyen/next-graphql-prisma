@@ -1,7 +1,10 @@
 import App from "next/app";
-import GlobalComponent from "../components/GlobalComponent";
 import { ApolloProvider } from "react-apollo";
+
+import GlobalComponent from "../components/GlobalComponent.component";
+
 import withData from "../lib/withData";
+
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};

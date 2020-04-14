@@ -34,19 +34,24 @@ const Form = styled.form`
     margin-bottom: 1rem;
     &:focus {
       outline: 0;
-      border-color: ${props => props.theme.red};
+      border-color: ${(props) => props.theme.red};
     }
   }
   button,
   input[type="submit"] {
+    border: 2px solid ${(props) => props.theme.red};
     width: auto;
     background: red;
     color: white;
-    /* border: 0; */
     font-size: 2rem;
     font-weight: 600;
     padding: 0.5rem 1.2rem;
     margin-top: 20px;
+    &:hover {
+      background-color: ${(props) => props.theme.white};
+      color: ${(props) => props.theme.red};
+      border: 2px solid ${(props) => props.theme.red};
+    }
   }
   fieldset {
     border: 0;

@@ -5,11 +5,11 @@ import Title from "./styles/Title";
 import ItemStyles from "./styles/ItemStyles";
 import PriceTag from "./styles/PriceTag";
 import formatMoney from "../lib/formatMoney";
-import DeleteItem from "../components/DeleteItem";
-import AddToCart from '../components/AddToCart'
+import DeleteItem from "./DeleteItem.component";
+import AddToCart from "./AddToCart.component";
 class Item extends Component {
   static propTypes = {
-    item: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired,
   };
   render() {
     const { item } = this.props;

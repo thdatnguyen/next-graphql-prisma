@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Signup from "../components/Signup";
-import Signin from "../components/Signin";
-import RequestReset from "../components/RequestReset";
+import Signup from "../components/Signup.component";
+import Signin from "../components/Signin.component";
+import RequestReset from "../components/RequestReset.component";
 import styled from "styled-components";
 
 const SignupWrappper = styled.div`

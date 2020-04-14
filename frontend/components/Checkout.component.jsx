@@ -5,11 +5,12 @@ import Router from "next/router";
 import NProgress from "nprogress";
 import gql from "graphql-tag";
 import calcTotalPrice from "../lib/calcTotalPrice";
-import ErrorMessage from "./ErrorMessage";
-import User, { CURRENT_USER_QUERY } from "./User";
+// import ErrorMessage from "./ErrorMessage.component";
+import User, { CURRENT_USER_QUERY } from "./User.component";
+import { USER_ORDERS_QUERY } from "./Orders.component";
 
 const CREATE_ORDER_MUTATION = gql`
-  mutation createOrder($token: String!) {
+  mutation CREATE_ORDER_MUTATION($token: String!) {
     createOrder(token: $token) {
       id
       charge
@@ -27,14 +28,18 @@ function totalItems(cart) {
 }
 
 class Checkout extends Component {
-  onReceivedToken = (res, createOrder) => {
-    console.log(res);
+  onReceivedToken = async (res, createOrder) => {
+    NProgress.start();
     // manually call the mutation once we have the stripe token
-    createOrder({
+    const order = await createOrder({
       variables: {
         token: res.id,
       },
     }).catch((err) => alert(err.message));
+    Router.push({
+      pathname: "/order",
+      query: { id: order.data.createOrder.id },
+    });
   };
   render() {
     return (
@@ -44,16 +49,21 @@ class Checkout extends Component {
           return (
             <Mutation
               mutation={CREATE_ORDER_MUTATION}
-              refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+              refetchQueries={[
+                { query: CURRENT_USER_QUERY },
+                { query: USER_ORDERS_QUERY },
+              ]}
             >
-              {(createOrder, { data, loading, error }) => (
+              {(createOrder) => (
                 <StripeCheckout
                   amount={calcTotalPrice(me.cart)}
                   name={`${me.name}'s checkout payment`}
                   description={`Order of ${totalItems(me.cart)} item${
                     totalItems(me.cart) > 1 ? "s" : ""
                   }`}
-                  image={me.cart[0].item && me.cart[0].item.image}
+                  image={
+                    me.cart.length && me.cart[0].item && me.cart[0].item.image
+                  }
                   stripeKey="pk_test_LeEcviPnQEGZzqqiN9CKaE0v00L2TKaWXe"
                   currency="USD"
                   email={me.email}

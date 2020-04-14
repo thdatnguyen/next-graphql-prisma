@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const OrderItemStyles = styled.li`
-  box-shadow: ${props => props.theme.bs};
+  box-shadow: ${(props) => props.theme.bs};
   list-style: none;
   padding: 2rem;
-  border: 1px solid ${props => props.theme.offWhite};
+  border: 1px solid ${(props) => props.theme.offWhite};
   h2 {
     border-bottom: 2px solid red;
     margin-top: 0;
@@ -18,9 +18,9 @@ const OrderItemStyles = styled.li`
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     margin-top: 1rem;
     img {
-      height: 200px;
-      object-fit: cover;
-      width: 100%;
+      height: 300px;
+      object-fit: contain;
+      max-width: 100%;
     }
   }
   .order-meta {

@@ -2,7 +2,9 @@ import React from "react";
 import formatMoney from "../lib/formatMoney";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import RemoveFromCart from "./RemoveFromCart";
+
+import RemoveFromCart from "./RemoveFromCart.component";
+
 const CartItem = ({ cartItem: { id, quantity, item } }) => {
   if (!item)
     return (
@@ -23,6 +25,7 @@ const CartItem = ({ cartItem: { id, quantity, item } }) => {
           </em>
         </p>
       </div>
+      <RemoveFromCart id={id} />
     </CartItemStyles>
   );
 };

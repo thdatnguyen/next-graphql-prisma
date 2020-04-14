@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Link from "next/link";
-import CreateItem from "../components/CreateItem";
-import PleaseSignIn from "../components/PleaseSignIn";
-const Sell = (props) => (
+// import Link from "next/link";
+import CreateItem from "../components/CreateItem.component";
+import PleaseSignIn from "../components/PleaseSignIn.component";
+
+const Sell = () => (
   <div>
     <PleaseSignIn>
       <CreateItem />

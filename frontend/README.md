@@ -1,3 +1,1 @@
-# Advanced-React
-
-frontend
+# Ecommerce Web: NEXTJS + GRAPHQL + PRISMA

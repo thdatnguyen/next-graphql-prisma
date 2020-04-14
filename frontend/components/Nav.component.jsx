@@ -3,15 +3,18 @@ import { Mutation } from "react-apollo";
 import Link from "next/link";
 
 import NavStyles from "./styles/NavStyles";
-import User from "./User";
-import Signout from "./Signout";
-import { TOGGLE_CART_MUTATION } from "./Cart";
-import CartCount from "./CartCount";
+
+import User from "./User.component";
+import Signout from "./Signout.component";
+import { TOGGLE_CART_MUTATION } from "./Cart.component";
+import CartCount from "./CartCount.component";
+import Permissions from "./Permissions.component";
 
 const Nav = () => (
   <User>
     {({ data }) => {
       const me = data ? data.me : null;
+      const isAdmin = me ? me.permissions.includes("ADMIN") : false;
       return (
         <NavStyles>
           <li>
@@ -19,7 +22,7 @@ const Nav = () => (
               <a>Shop</a>
             </Link>
           </li>
-          {me && (
+          {me && isAdmin && (
             <>
               <li>
                 <Link href="/sell">
@@ -27,15 +30,24 @@ const Nav = () => (
                 </Link>
               </li>
               <li>
+                <Link href="/permissions">
+                  <a>Permission</a>
+                </Link>
+              </li>
+            </>
+          )}
+          {me && (
+            <>
+              <li>
                 <Link href="/orders">
                   <a>Orders</a>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/me">
                   <a>Account</a>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Signout />
               </li>
@@ -56,6 +68,7 @@ const Nav = () => (
               </li>
             </>
           )}
+
           {!me && (
             <li>
               <Link href="/signup">

@@ -1,5 +1,5 @@
 import React from "react";
-import Permissions from "../components/Permissions";
+import Permissions from "../components/Permissions.component";
 const permissions = () => {
   return <Permissions />;
 };

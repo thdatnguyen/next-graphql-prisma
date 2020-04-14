@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Query, Mutation } from "react-apollo";
-import ErrorMessage from "./ErrorMessage";
 import gql from "graphql-tag";
+
+import ErrorMessage from "./ErrorMessage.component";
 import Table from "./styles/Table";
 import SickButton from "./styles/SickButton";
 import PropTypes from "prop-types";

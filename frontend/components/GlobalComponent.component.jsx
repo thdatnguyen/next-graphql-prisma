@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Header from "./Header";
-import Meta from "./Meta";
+import Header from "./Header.component";
+import Meta from "./Meta.component";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 
 const theme = {
@@ -68,15 +68,15 @@ const GlobalStyled = createGlobalStyle`
     color: ${theme.black};
   }
   button {
-    border: 1px solid ${(props) => props.theme.red};
+    border: 2px solid ${(props) => props.theme.red};
     font-family: 'FiraSans', sans-serif;
     font-weight: 600;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     cursor: pointer;
     &:hover {
-      /* border: 1px solid ${(props) => props.theme.red}; */
       background-color: ${(props) => props.theme.white};
       color: ${(props) => props.theme.red};
+      border: 2px solid ${(props) => props.theme.red};
     }
     &:disabled,
     &[disabled] {

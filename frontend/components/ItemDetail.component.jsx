@@ -1,13 +1,15 @@
-import React, { Component } from "react";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import styled from "styled-components";
-import Head from "next/head";
+import React, { Component } from 'react';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import styled from 'styled-components';
+import Head from 'next/head';
+
+import ErrorMessage from './ErrorMessage.component';
 
 const ItemDetailStyle = styled.div`
   max-width: 1200px;
   margin: 2rem auto;
-  box-shadow: ${props => props.theme.bs};
+  box-shadow: ${(props) => props.theme.bs};
   display: grid;
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
@@ -39,14 +41,14 @@ class ItemDetail extends Component {
     return (
       <Query query={ITEM_DETAIL_QUERY} variables={{ id: this.props.id }}>
         {({ loading, data, error }) => {
-          if (error) return <Error error={error} />;
+          if (error) return <ErrorMessage error={error} />;
           if (loading) return <p>Loading...</p>;
           if (!data.item) return <p>No item found for {this.props.id}</p>;
           const item = data.item;
           return (
             <ItemDetailStyle>
               <Head>
-                <title>Tada Ecommerce | Item {item.title}</title>
+                <title>Tada Ecommerce | {item.title}</title>
               </Head>
               <img src={item.largeImage} alt={item.title} />
               <div className="details">
@@ -62,3 +64,4 @@ class ItemDetail extends Component {
 }
 
 export default ItemDetail;
+export { ITEM_DETAIL_QUERY };

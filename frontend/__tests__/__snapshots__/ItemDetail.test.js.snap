@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ItemDetail /> renders with Error: a not found item 1`] = `
+<p
+  data-test="graphql-error"
+>
+  <strong>
+    Shoot!
+  </strong>
+  Items not found!
+</p>
+`;
+
+exports[`<ItemDetail /> renders with proper data in H2 Tag, Image Tag and Paragraph Tag 1`] = `
+<h2>
+  Viewing 
+  dogs are best
+</h2>
+`;
+
+exports[`<ItemDetail /> renders with proper data in H2 Tag, Image Tag and Paragraph Tag 2`] = `
+<img
+  alt="dogs are best"
+  src="dog.jpg"
+/>
+`;
+
+exports[`<ItemDetail /> renders with proper data in H2 Tag, Image Tag and Paragraph Tag 3`] = `
+<p>
+  dogs
+</p>
+`;

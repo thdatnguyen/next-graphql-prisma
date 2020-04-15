@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import Title from "./styles/Title";
-import ItemStyles from "./styles/ItemStyles";
-import PriceTag from "./styles/PriceTag";
-import formatMoney from "../lib/formatMoney";
-import DeleteItem from "./DeleteItem.component";
-import AddToCart from "./AddToCart.component";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Link from 'next/link';
+import Title from './styles/Title';
+import ItemStyles from './styles/ItemStyles';
+import PriceTag from './styles/PriceTag';
+import formatMoney from '../lib/formatMoney';
+import DeleteItem from './DeleteItem.component';
+import AddToCart from './AddToCart.component';
 class Item extends Component {
   static propTypes = {
     item: PropTypes.object.isRequired,
@@ -17,7 +17,7 @@ class Item extends Component {
       <ItemStyles>
         {item.image && <img src={item.image} alt={item.title} />}
         <Title>
-          <Link href={{ pathname: "/item", query: { id: item.id } }}>
+          <Link href={{ pathname: '/item', query: { id: item.id } }}>
             <a>{item.title}</a>
           </Link>
         </Title>
@@ -26,7 +26,7 @@ class Item extends Component {
         <div className="buttonList">
           <Link
             href={{
-              pathname: "/update",
+              pathname: '/update',
               query: {
                 id: item.id,
               },

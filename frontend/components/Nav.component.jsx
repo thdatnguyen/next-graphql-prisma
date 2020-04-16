@@ -1,20 +1,20 @@
-import React from "react";
-import { Mutation } from "react-apollo";
-import Link from "next/link";
+import React from 'react';
+import { Mutation } from 'react-apollo';
+import Link from 'next/link';
 
-import NavStyles from "./styles/NavStyles";
+import NavStyles from './styles/NavStyles';
 
-import User from "./User.component";
-import Signout from "./Signout.component";
-import { TOGGLE_CART_MUTATION } from "./Cart.component";
-import CartCount from "./CartCount.component";
-import Permissions from "./Permissions.component";
+import User from './User.component';
+import Signout from './Signout.component';
+import { TOGGLE_CART_MUTATION } from './Cart.component';
+import CartCount from './CartCount.component';
+// import Permissions from "./Permissions.component";
 
 const Nav = () => (
   <User>
     {({ data }) => {
       const me = data ? data.me : null;
-      const isAdmin = me ? me.permissions.includes("ADMIN") : false;
+      const isAdmin = me ? me.permissions.includes('ADMIN') : false;
       return (
         <NavStyles>
           <li>
@@ -55,7 +55,7 @@ const Nav = () => (
                 <Mutation mutation={TOGGLE_CART_MUTATION}>
                   {(toggleCart) => (
                     <button onClick={toggleCart}>
-                      My Cart{" "}
+                      My Cart{' '}
                       <CartCount
                         count={me.cart.reduce(
                           (tally, cartItem) => tally + cartItem.quantity,

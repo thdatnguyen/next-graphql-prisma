@@ -7,6 +7,7 @@ import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
 import DeleteItem from './DeleteItem.component';
 import AddToCart from './AddToCart.component';
+import User from './User.component';
 class Item extends Component {
   static propTypes = {
     item: PropTypes.object.isRequired,
@@ -23,20 +24,30 @@ class Item extends Component {
         </Title>
         <PriceTag>{formatMoney(item.price)}</PriceTag>
         <p>{item.description}</p>
-        <div className="buttonList">
-          <Link
-            href={{
-              pathname: '/update',
-              query: {
-                id: item.id,
-              },
-            }}
-          >
-            <a>Edit</a>
-          </Link>
-          <AddToCart id={item.id} />
-          <DeleteItem id={item.id}>Delete</DeleteItem>
-        </div>
+        <User>
+          {({ data }) => {
+            const me = data ? data.me : null;
+            const isAdmin = me ? me.permissions.includes('ADMIN') : false;
+            return (
+              <div className="buttonList">
+                {isAdmin && (
+                  <Link
+                    href={{
+                      pathname: '/update',
+                      query: {
+                        id: item.id,
+                      },
+                    }}
+                  >
+                    <a>Edit</a>
+                  </Link>
+                )}
+                <AddToCart id={item.id} />
+                {isAdmin && <DeleteItem id={item.id}>Delete</DeleteItem>}
+              </div>
+            );
+          }}
+        </User>
       </ItemStyles>
     );
   }

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
-import Form from "./styles/Form";
-import ErrorMessage from "./ErrorMessage";
-import { CURRENT_USER_QUERY } from "./User";
+import Form from './styles/Form';
+import ErrorMessage from './ErrorMessage.component';
+import { CURRENT_USER_QUERY } from './User.component';
 
 const RESET_PASSWORD_MUTATION = gql`
   mutation RESET_PASSWORD_MUTATION(
@@ -30,8 +30,8 @@ class ResetPassword extends Component {
     resetToken: PropTypes.string.isRequired,
   };
   state = {
-    password: "",
-    confirmPassword: "",
+    password: '',
+    confirmPassword: '',
   };
   saveToState = (e) => {
     const { name, value } = e.target;
@@ -59,8 +59,8 @@ class ResetPassword extends Component {
               e.preventDefault();
               await reset();
               this.setState({
-                password: "",
-                confirmPassword: "",
+                password: '',
+                confirmPassword: '',
               });
             }}
           >

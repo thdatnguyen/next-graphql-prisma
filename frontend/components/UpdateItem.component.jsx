@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Mutation, Query } from "react-apollo";
-import gql from "graphql-tag";
-import Form from "./styles/Form";
-import formatMoney from "../lib/formatMoney";
-import ErrorMessage from "./ErrorMessage";
-import Router from "next/router";
+import React, { Component } from 'react';
+import { Mutation, Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import Form from './styles/Form';
+import formatMoney from '../lib/formatMoney';
+import ErrorMessage from './ErrorMessage.component';
+import Router from 'next/router';
 
 const SINGLE_ITEM_QUERY = gql`
   query SINGLE_ITEM_QUERY($id: ID!) {
@@ -43,7 +43,7 @@ class UpdateItem extends Component {
 
   handleChange = (e) => {
     const { name, type, value } = e.target;
-    const val = type === "number" ? parseFloat(value) : value;
+    const val = type === 'number' ? parseFloat(value) : value;
     this.setState({
       [name]: val,
     });
@@ -76,44 +76,44 @@ class UpdateItem extends Component {
                   <ErrorMessage error={error} />
                   <fieldset disabled={loading} aria-busy={loading}>
                     <label htmlFor="title">
-                      {"title"[0].toUpperCase() + "title".slice(1)}
+                      {'title'[0].toUpperCase() + 'title'.slice(1)}
                     </label>
                     <input
                       type="text"
                       id="title"
                       name="title"
-                      placeholder={"title"[0].toUpperCase() + "title".slice(1)}
+                      placeholder={'title'[0].toUpperCase() + 'title'.slice(1)}
                       required
                       defaultValue={data.item.title}
                       onChange={this.handleChange}
                     />
                     <label htmlFor="price">
-                      {"price"[0].toUpperCase() + "price".slice(1)}
+                      {'price'[0].toUpperCase() + 'price'.slice(1)}
                     </label>
                     <input
                       type="number"
                       id="price"
                       name="price"
-                      placeholder={"price"[0].toUpperCase() + "price".slice(1)}
+                      placeholder={'price'[0].toUpperCase() + 'price'.slice(1)}
                       required
                       defaultValue={data.item.price}
                       onChange={this.handleChange}
                     />
                     <label htmlFor="description">
-                      {"description"[0].toUpperCase() + "description".slice(1)}
+                      {'description'[0].toUpperCase() + 'description'.slice(1)}
                     </label>
                     <textarea
                       id="description"
                       name="description"
                       placeholder={
-                        "description"[0].toUpperCase() + "description".slice(1)
+                        'description'[0].toUpperCase() + 'description'.slice(1)
                       }
                       required
                       defaultValue={data.item.description}
                       onChange={this.handleChange}
                     />
                     <button type="submit">
-                      Sav{loading ? "ing" : "e"} Changes
+                      Sav{loading ? 'ing' : 'e'} Changes
                     </button>
                   </fieldset>
                 </Form>

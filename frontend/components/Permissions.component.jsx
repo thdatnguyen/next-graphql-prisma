@@ -1,19 +1,20 @@
-import React, { Component } from "react";
-import { Query, Mutation } from "react-apollo";
-import gql from "graphql-tag";
+import React, { Component } from 'react';
+import { Query, Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
-import ErrorMessage from "./ErrorMessage.component";
-import Table from "./styles/Table";
-import SickButton from "./styles/SickButton";
-import PropTypes from "prop-types";
+import ErrorMessage from './ErrorMessage.component';
+
+import Table from './styles/Table';
+import SickButton from './styles/SickButton';
 
 const possiblePermissions = [
-  "ADMIN",
-  "USER",
-  "ITEMCREATE",
-  "ITEMUPDATE",
-  "ITEMDELETE",
-  "PERMISSIONUPDATE",
+  'ADMIN',
+  'USER',
+  'ITEMCREATE',
+  'ITEMUPDATE',
+  'ITEMDELETE',
+  'PERMISSIONUPDATE',
 ];
 
 const UPDATE_PERMISSIONS_MUTATION = gql`
@@ -133,7 +134,7 @@ class UserPermission extends Component {
                   disabled={loading}
                   onClick={updatePermissions}
                 >
-                  Updat{loading ? "ing" : "e"}
+                  Updat{loading ? 'ing' : 'e'}
                 </SickButton>
               </td>
             </tr>

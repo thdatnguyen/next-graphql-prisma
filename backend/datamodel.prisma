@@ -18,6 +18,7 @@ type User {
   updatedAt: DateTime! @updatedAt
   permissions: [Permission] @scalarList(strategy:RELATION)
   cart: [CartItem!]!
+  orders: [OrderItem]
 }
 
 type Item {

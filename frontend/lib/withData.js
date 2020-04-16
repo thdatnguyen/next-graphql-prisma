@@ -1,14 +1,14 @@
-import withApollo from "next-with-apollo";
-import ApolloClient from "apollo-boost";
-import { endpoint } from "../config";
-import { LOCAL_STATE_QUERY } from "../components/Cart.component";
+import withApollo from 'next-with-apollo';
+import ApolloClient from 'apollo-boost';
+import { endpoint } from '../config';
+import { LOCAL_STATE_QUERY } from '../components/Cart.component';
 function createClient({ headers }) {
   return new ApolloClient({
-    uri: process.env.NODE_ENV === "development" ? endpoint : endpoint,
+    uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
     request: (operation) => {
       operation.setContext({
         fetchOptions: {
-          credentials: "include",
+          credentials: 'include',
         },
         headers,
       });

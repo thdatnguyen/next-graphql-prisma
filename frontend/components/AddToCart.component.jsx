@@ -13,6 +13,9 @@ const ADD_TO_CART_MUTATION = gql`
 `;
 
 class AddToCart extends Component {
+  handleAddToCart = async (addToCart) => {
+    await addToCart().catch((err) => alert(err.message));
+  };
   render() {
     const { id } = this.props;
     return (
@@ -25,7 +28,7 @@ class AddToCart extends Component {
           <button
             className="btn-add-to-cart"
             disabled={loading}
-            onClick={addToCart}
+            onClick={() => this.handleAddToCart(addToCart)}
           >
             Add{loading ? 'ing' : ''} To Cart
           </button>

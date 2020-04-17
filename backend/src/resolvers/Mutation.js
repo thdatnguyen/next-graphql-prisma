@@ -76,7 +76,7 @@ const Mutations = {
     });
     return user;
   },
-  async signin(parent, { email, password }, ctx, info) {
+  async signin(_parent, { email, password }, ctx, _info) {
     // check user with email
     const user = await ctx.db.query.user({ where: { email } });
     if (!user) {
@@ -97,11 +97,11 @@ const Mutations = {
     // return the user
     return user;
   },
-  signout(parent, args, ctx, info) {
+  signout(_parent, _args, ctx, _info) {
     ctx.response.clearCookie('token');
     return { message: 'Goodbye' };
   },
-  async requestReset(parent, args, ctx, info) {
+  async requestReset(_parent, args, ctx, _info) {
     // Check if this is a real user
     const user = await ctx.db.query.user({ where: { email: args.email } });
 
@@ -270,7 +270,7 @@ const Mutations = {
       info
     );
   },
-  async createOrder(_parent, args, ctx, info) {
+  async createOrder(_parent, args, ctx, _info) {
     // 1. Check they signed in
     const { userId } = ctx.request;
     if (!userId)

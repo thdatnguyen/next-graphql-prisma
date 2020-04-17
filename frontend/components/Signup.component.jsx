@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import Router from 'next/router';
 
-import ErrorMessage from "./ErrorMessage.component";
-import { CURRENT_USER_QUERY } from "./User.component";
+import ErrorMessage from './ErrorMessage.component';
+import { CURRENT_USER_QUERY } from './User.component';
 
-import Form from "./styles/Form";
+import Form from './styles/Form';
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
     $email: String!
@@ -22,9 +23,9 @@ const SIGNUP_MUTATION = gql`
 
 class Signup extends Component {
   state = {
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   };
   saveToState = (e) => {
     const { name, value } = e.target;
@@ -44,9 +45,13 @@ class Signup extends Component {
               e.preventDefault();
               const res = await signup();
               this.setState({
-                name: "",
-                email: "",
-                password: "",
+                name: '',
+                email: '',
+                password: '',
+              });
+              alert('You sign up successfully!');
+              Router.push({
+                pathname: '/',
               });
             }}
           >

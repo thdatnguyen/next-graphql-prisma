@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 
 import Form from './styles/Form';
 import ErrorMessage from './ErrorMessage.component';
@@ -61,6 +62,9 @@ class ResetPassword extends Component {
               this.setState({
                 password: '',
                 confirmPassword: '',
+              });
+              Router.push({
+                pathname: '/',
               });
             }}
           >

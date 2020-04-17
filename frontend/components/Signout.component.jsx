@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import Router from "next/router";
-import gql from "graphql-tag";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import Router from 'next/router';
+import gql from 'graphql-tag';
 
-import { CURRENT_USER_QUERY } from "./User.component";
+import { CURRENT_USER_QUERY } from './User.component';
 
 const SIGN_OUT_MUTATION = gql`
   mutation SIGN_OUT_MUTATION {
@@ -14,10 +14,10 @@ const SIGN_OUT_MUTATION = gql`
 `;
 
 class Signout extends Component {
-  handleSignout = (signout) => {
-    signout();
+  handleSignout = async (signout) => {
+    await signout();
     Router.push({
-      pathname: "/",
+      pathname: '/',
     });
   };
   render() {
